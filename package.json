@@ -1,0 +1,13 @@
+{
+  "name": "charan.exe",
+  "version": "1.0.1",
+  "description": "say hi to charan from your terminal: npx charan.exe",
+  "bin": { "charan": "bin/index.js" },
+  "files": ["bin", "README.md", "LICENSE"],
+  "engines": { "node": ">=16" },
+  "keywords": ["hello", "cli", "card", "npx", "business-card", "charan", "terminal"],
+  "author": "Charan Nihaal R <charancodes@proton.me> (https://charancodes.com)",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/compteccharan/charan.exe.git" },
+  "homepage": "https://charancodes.com"
+}
