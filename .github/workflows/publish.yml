@@ -1,0 +1,36 @@
+name: publish to npm
+
+# bump "version" in package.json, push to main, and this ships it.
+# uses npm trusted publishing (no tokens, no OTP).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest
+      - name: skip if this version is already on npm
+        id: check
+        run: |
+          V=$(node -p "require('./package.json').version")
+          if npm view "charan.exe@$V" version >/dev/null 2>&1; then
+            echo "v$V already published, nothing to do"; echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: smoke test
+        if: steps.check.outputs.skip != 'true'
+        run: node bin/index.js
+      - name: publish
+        if: steps.check.outputs.skip != 'true'
+        run: npm publish --access public
