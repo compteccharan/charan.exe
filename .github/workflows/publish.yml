@@ -33,4 +33,4 @@ jobs:
         run: node bin/index.js
       - name: publish
         if: steps.check.outputs.skip != 'true'
-        run: npm publish --access public
+        run: npm publish --access public --provenance=false
