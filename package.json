@@ -1,6 +1,6 @@
 {
   "name": "charan.exe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "say hi to charan from your terminal: npx charan.exe",
   "bin": { "charan": "bin/index.js" },
   "files": ["bin", "README.md", "LICENSE"],
